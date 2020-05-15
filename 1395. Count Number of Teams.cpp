@@ -1,6 +1,8 @@
 //Phoneix_RK
 
 /*
+https://leetcode.com/problems/count-number-of-teams/
+
 There are n soldiers standing in a line. Each soldier is assigned a unique rating value.
 
 You have to form a team of 3 soldiers amongst them under the following rules:
