@@ -83,3 +83,49 @@ public:
         return len;
     }
 };
+
+
+
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+       
+        map <int,int> m;
+        int len=0,r;
+        for(int i=0;i<nums.size();i++)
+        {
+            if(m[nums[i]])
+                continue;
+            
+            if(m.find(nums[i]-1)==m.end() && m.find(nums[i]+1)==m.end())
+            {
+                m[nums[i]]=1;
+                len= max(len,m[nums[i]]);
+                continue;
+            }
+            
+            if(m.find(nums[i]+1)==m.end())
+            {
+                r = m[nums[i]]  = m[nums[i]-m[nums[i]-1]]= m[nums[i]-1]+1;
+                len =  max(r, len);
+                continue;
+                
+            }
+            
+            if(m.find(nums[i]-1)==m.end())
+            {
+                r = m[nums[i]] = m[nums[i]+m[nums[i]+1]] = m[nums[i]+1] +1;
+                len =  max(r, len);
+                continue;
+            }
+           
+                r= m[nums[i]] = m[nums[i]-m[nums[i]-1]] = m[nums[i]+ m[nums[i]+1]] = m[nums[i]-1] + m[nums[i]+1] + 1;
+                len=max(r,len);
+            
+            
+        }
+        
+        
+        return len;
+    }
+};
