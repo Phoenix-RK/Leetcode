@@ -66,3 +66,35 @@ public:
         
     }
 };
+
+
+
+class Solution {
+public:
+    
+    TreeNode* helper(vector<int>& preorder,int &ind,int min,int max)
+    {
+        if(ind>=preorder.size())
+            return NULL;
+        
+        int key=preorder[ind];
+        TreeNode* node=NULL;
+        if(key>min && key<max)
+        {
+           
+            node=new TreeNode(key);
+            ind++;
+            node->left=helper(preorder,ind,min,key);
+            node->right=helper(preorder,ind,key,max);
+        }
+        return node;
+    }
+    TreeNode* bstFromPreorder(vector<int>& preorder) {
+       
+        if(preorder.size()==0)
+            return NULL;
+        int ind=0;
+        return helper(preorder,ind,INT_MIN,INT_MAX);
+        
+    }
+};
