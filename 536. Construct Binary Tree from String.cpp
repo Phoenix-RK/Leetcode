@@ -1,0 +1,119 @@
+//Phoenix_RK
+
+
+/*
+
+https://www.lintcode.com/problem/construct-binary-tree-from-string/description
+
+You need to construct a binary tree from a string consisting of parenthesis and integers.
+
+The whole input represents a binary tree. It contains an integer followed by zero, one or two pairs of parenthesis. The integer represents the root's value and a pair of parenthesis contains a child binary tree with the same structure.
+
+You always start to construct the left child node of the parent first if it exists.
+
+Example
+Example 1:
+
+Input: "-4(2(3)(1))(6(5))"
+Output: {-4,2,6,3,1,5}
+Explanation:
+The output is look like this:
+      -4
+     /  \
+    2    6
+   / \   / 
+  3   1 5   
+Example 2:
+
+Input: "1(-1)"
+Output: {1,-1}
+Explanation:
+The output is look like this:
+     1
+    /
+  -1
+Notice
+There will only be '(', ')', '-' and '0' ~ '9' in the input string.
+An empty tree is represented by "" instead of "()".
+
+
+
+
+*/
+
+
+
+class Solution {
+public:
+    /**
+     * @param s: a string
+     * @return: a root of this tree
+     */
+     
+    TreeNode* construct(string &s,int &ind)
+    {
+        if(ind>=len(s))
+            return NULL;
+            
+        bool neg=false;
+        
+        if(s[ind]=='-')
+        {
+            neg=true;
+            ind++;
+        }
+        int val=0;
+        
+        while(ind<len(s) && isdigit(s[ind]))
+        {
+            int x= atoi(s[ind]);
+            val=val*10+x;
+            ind++;
+        }
+        if(neg)
+            val=-val;
+            
+        TreeNode* temp = new TreeNode(val);
+        
+        if(ind>=len(s))
+            return temp;
+        
+        if(ind<len(s) && s[ind]=='(');
+        {
+            ind++;
+             temp->left = construct(s,ind);
+        }
+    
+        if(ind<len(s) && s[ind]==')')
+        {
+            ind++;
+            return temp;
+        }   
+        
+        if(ind<len(s) && s[ind]=='(');
+        {
+            ind++;
+             temp->right = construct(s,ind);
+        } 
+    
+        if(ind<len(s) && s[ind]==')')
+        {
+            ind++;
+            return temp;
+        }   
+        
+        return temp;
+    }
+    TreeNode * str2tree(string &s) {
+        // write your code here
+        
+        if(len(s)==0)
+            return NULL;
+            
+        int ind=0;
+        
+        return construct(s,ind);
+        
+        
+    }
+};
