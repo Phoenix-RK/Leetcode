@@ -11,6 +11,15 @@ Choose 3 soldiers with index (i, j, k) with rating (rating[i], rating[j], rating
 A team is valid if:  (rating[i] < rating[j] < rating[k]) or (rating[i] > rating[j] > rating[k]) where (0 <= i < j < k < n).
 Return the number of teams you can form given the conditions. (soldiers can be part of multiple teams).
 */
+
+  /* 
+        2 5 3 4 1
+        0 1 2 3 4 
+  dpG   0 1 1 2 0
+  dpL   0 0 1 1 2
+            
+res = 1 + 1 + 1
+            */
  
 class Solution {
 public:
